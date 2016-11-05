@@ -63,8 +63,8 @@ public class Calculator extends JFrame implements ActionListener{
       Creates a new Font from the specified name, style and point size.
 	 */
 	
-	Font f12 = new Font("Times New Roman", 0, 12);
-	Font f121 = new Font("Times New Roman", 1, 12);
+	Font f12 = new Font("Times New Roman", 0, 20);
+	Font f121 = new Font("Times New Roman", 1, 20);
 	Font fd = importFont();
 	
 	// Constructor 
@@ -298,10 +298,12 @@ public class Calculator extends JFrame implements ActionListener{
         				jbnButtons[i].setFont(fd);
       				}
     			}else{
+				jlbOutput.setFont(new JLabel().getFont());
       				for(int i=0;i<jbnButtons.length;i++){
         				jbnButtons[i].setFont(f12);
       				}
     			}
+			pack();
   		}
 
 		// Search for the button pressed until end of array or key found
