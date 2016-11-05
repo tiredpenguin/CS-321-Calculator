@@ -50,8 +50,8 @@ public class Calculator extends JFrame implements ActionListener{
 	double lastNumber;
 	String lastOperator;
 
-	private JMenu jmenuFile, jmenuHelp;
-	private JMenuItem jmenuitemExit, jmenuitemAbout;
+	private JMenu jmenuFile, jmenuHelp, jmenuAccess;
+	private JMenuItem jmenuitemExit, jmenuitemAbout, jmenuitemDys,jmenuitemCol,jmenuitemEye;
 	
 	private JLabel jlbOutput;
 	private JButton jbnButtons[];
@@ -90,6 +90,22 @@ public class Calculator extends JFrame implements ActionListener{
 		jmenuitemAbout = new JMenuItem("About Calculator");
 		jmenuitemAbout.setFont(f12);
 		jmenuHelp.add(jmenuitemAbout);
+		
+		jmenuAccess = new JMenu("Accessability");
+  		jmenuAccess.setFont(f121);
+ 		jmenuAccess.setMnemonic(KeyEvent.VK_A);
+  
+  		jmenuitemDys = new JMenuItem("Dyslexia");
+		jmenuitemDys.setFont(f12);
+		jmenuAccess.add(jmenuitemDys);
+
+		jmenuitemCol = new JMenuItem("Colorblind");
+		jmenuitemCol.setFont(f12);
+		jmenuAccess.add(jmenuitemCol);
+
+		jmenuitemEye = new JMenuItem("Eye Saver");
+		jmenuitemEye.setFont(f12);
+		jmenuAccess.add(jmenuitemEye);
 		
 		JMenuBar mb = new JMenuBar();
 		mb.add(jmenuFile);
