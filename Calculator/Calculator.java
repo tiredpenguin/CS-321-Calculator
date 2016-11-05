@@ -46,7 +46,7 @@ public class Calculator extends JFrame implements ActionListener{
 	final int ERROR_MODE = 2;
 	int displayMode;
 
-	boolean clearOnNextDigit, percent;
+	boolean clearOnNextDigit, percent, col = false, dys = false;
 	double lastNumber;
 	String lastOperator;
 
@@ -64,6 +64,7 @@ public class Calculator extends JFrame implements ActionListener{
 	
 	Font f12 = new Font("Times New Roman", 0, 12);
 	Font f121 = new Font("Times New Roman", 1, 12);
+	Font fd = new Font("Dyslexie",0,12);
 	
 	// Constructor 
 	public Calculator() 
@@ -110,6 +111,7 @@ public class Calculator extends JFrame implements ActionListener{
 		JMenuBar mb = new JMenuBar();
 		mb.add(jmenuFile);
 		mb.add(jmenuHelp);
+		mb.add(jmenuAccess);
 		setJMenuBar(mb);
 		
 		//Set frame layout manager
@@ -233,6 +235,9 @@ public class Calculator extends JFrame implements ActionListener{
 		
 		jmenuitemAbout.addActionListener(this);
 		jmenuitemExit.addActionListener(this);
+		jmenuitemCol.addActionListener(this);
+  		jmenuitemDys.addActionListener(this);
+		jmenuitemEye.addActionListener(this);
 
 		clearAll();
 
@@ -258,6 +263,45 @@ public class Calculator extends JFrame implements ActionListener{
 		}else if(e.getSource() == jmenuitemExit){
 			System.exit(0);
 		}	
+		
+//Disability Options
+		//COLORBLIND OPTION
+  		if(e.getSource() == jmenuitemCol){
+    			col = !col;
+    			if(col){
+  				for(int i=0;i<jbnButtons.length;i++){
+        				if (i<10){
+          					jbnButtons[i].setForeground(Color.white);
+						jbnButtons[i].setBackground(Color.black);
+        				}else{
+          					jbnButtons[i].setForeground(Color.black);
+          					jbnButtons[i].setBackground(Color.white);
+        				}
+      				}
+    			}else{
+       				for(int i=0;i<jbnButtons.length;i++){
+         				jbnButtons[i].setBackground(new JButton().getBackground());
+        				if (i<10){
+          					jbnButtons[i].setForeground(Color.blue);
+        				}else{
+          					jbnButtons[i].setForeground(Color.red);
+        				}
+      				}
+    			}
+		//DYSLEXIA OPTION
+  		}else if(e.getSource() == jmenuitemDys){
+    			dys = !dys;
+    			if(dys){
+      				jlbOutput.setFont(fd);
+      				for(int i=0;i<jbnButtons.length;i++){
+        				jbnButtons[i].setFont(fd);
+      				}
+    			}else{
+      				for(int i=0;i<jbnButtons.length;i++){
+        				jbnButtons[i].setFont(f12);
+      				}
+    			}
+  		}
 
 		// Search for the button pressed until end of array or key found
 		for (int i=0; i<jbnButtons.length; i++)
