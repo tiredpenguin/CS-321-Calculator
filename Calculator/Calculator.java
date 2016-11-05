@@ -26,6 +26,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.*;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -64,7 +65,7 @@ public class Calculator extends JFrame implements ActionListener{
 	
 	Font f12 = new Font("Times New Roman", 0, 12);
 	Font f121 = new Font("Times New Roman", 1, 12);
-	Font fd = new Font("Dyslexie",0,12);
+	Font fd = importFont();
 	
 	// Constructor 
 	public Calculator() 
@@ -632,6 +633,22 @@ public class Calculator extends JFrame implements ActionListener{
 		calci.setLocation(400, 250);
 		calci.setVisible(true);
 		calci.setResizable(false);
+	}
+	
+	Font importFont(){
+		try {
+			 //Returned font is of pt size 1
+			 Font font = Font.createFont(Font.TRUETYPE_FONT, new File("OpenDyslexicAlta-Regular.ttf"));
+
+			 //Derive and return a 12 pt version:
+			 //Need to use float otherwise
+			 //it would be interpreted as style
+
+			 return font.deriveFont(12f);
+
+		} catch (Exception e) {
+			 return null;
+		}
 	}
 	
 }		//End of Swing Calculator Class.
