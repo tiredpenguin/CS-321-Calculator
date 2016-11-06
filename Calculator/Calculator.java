@@ -45,6 +45,7 @@ public class Calculator extends JFrame implements ActionListener{
 	final int INPUT_MODE = 0;
 	final int RESULT_MODE = 1;
 	final int ERROR_MODE = 2;
+	final static Color lowTemp = new Color(226, 153, 0);
 	int displayMode;
 
 	boolean clearOnNextDigit, percent, col = false, dys = false;
@@ -57,6 +58,7 @@ public class Calculator extends JFrame implements ActionListener{
 	private JLabel jlbOutput;
 	private JButton jbnButtons[];
 	private JPanel jplMaster, jplBackSpace, jplControl;
+	private JPanel jplButtons = new JPanel();			// container for Jbuttons
 	
 	/*
 	 * Font(String name, int style, int size)
@@ -132,7 +134,6 @@ public class Calculator extends JFrame implements ActionListener{
 		jbnButtons = new JButton[23];
 //		GridLayout(int rows, int cols, int hgap, int vgap) 
 
-		JPanel jplButtons = new JPanel();			// container for Jbuttons
 
 		// Create numeric Jbuttons
 		for (int i=0; i<=9; i++)
@@ -303,7 +304,17 @@ public class Calculator extends JFrame implements ActionListener{
         				jbnButtons[i].setFont(f12);
       				}
     			}
-			pack();
+  		}
+		else if(e.getSource() == jmenuitemEye){
+  				// Set colors
+  				for (int i = 0; i <= 22; i++){
+  					jbnButtons[i].setBackground(lowTemp);
+  				}
+  				jplButtons.setBackground(lowTemp);
+  				jplMaster.setBackground(lowTemp);
+  				jlbOutput.setBackground(lowTemp);
+  				jplControl.setBackground(lowTemp);
+  				getContentPane().setBackground(lowTemp);;
   		}
 
 		// Search for the button pressed until end of array or key found
