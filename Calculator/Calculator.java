@@ -48,12 +48,13 @@ public class Calculator extends JFrame implements ActionListener{
 	final static Color lowTemp = new Color(226, 153, 0);
 	int displayMode;
 
-	boolean clearOnNextDigit, percent, col = false, dys = false;
+	boolean clearOnNextDigit, percent, col = false, dys = false, eye = false;
 	double lastNumber;
 	String lastOperator;
 
 	private JMenu jmenuFile, jmenuHelp, jmenuAccess;
-	private JMenuItem jmenuitemExit, jmenuitemAbout, jmenuitemDys,jmenuitemCol,jmenuitemEye;
+	private JMenuItem jmenuitemExit, jmenuitemAbout;
+	private JCheckBoxMenuItem jmenuitemDys,jmenuitemCol,jmenuitemEye;
 	
 	private JLabel jlbOutput;
 	private JButton jbnButtons[];
@@ -271,6 +272,16 @@ public class Calculator extends JFrame implements ActionListener{
   		if(e.getSource() == jmenuitemCol){
     			col = !col;
     			if(col){
+				if(eye){
+					eye = !eye;
+        				jmenuitemEye.setState(false);
+       				 	jplButtons.setBackground(new JPanel().getBackground());
+        				jplMaster.setBackground(new JPanel().getBackground());
+        				jlbOutput.setBackground(Color.white);
+        				jplControl.setBackground(new JPanel().getBackground());
+        				getContentPane().setBackground(new Calculator().getContentPane().getBackground());
+        				setBackground(Color.gray);
+				}
   				for(int i=0;i<jbnButtons.length;i++){
         				if (i<10){
           					jbnButtons[i].setForeground(Color.white);
@@ -304,8 +315,15 @@ public class Calculator extends JFrame implements ActionListener{
         				jbnButtons[i].setFont(f12);
       				}
     			}
-  		}
-		else if(e.getSource() == jmenuitemEye){
+		//EYE SAVER OPTION
+		}else if(e.getSource() == jmenuitemEye){
+			eye = !eye;
+			//If Colorblind mode active, deactivate it
+			if(eye){
+      				if(col){
+       					col = !col;
+      					jmenuitemCol.setState(false);
+     	 			}
   				// Set colors
   				for (int i = 0; i <= 22; i++){
   					jbnButtons[i].setBackground(lowTemp);
@@ -315,7 +333,23 @@ public class Calculator extends JFrame implements ActionListener{
   				jlbOutput.setBackground(lowTemp);
   				jplControl.setBackground(lowTemp);
   				getContentPane().setBackground(lowTemp);;
-  		}
+  			}else{
+				for(int i=0;i<jbnButtons.length;i++){
+					jbnButtons[i].setBackground(new JButton().getBackground());
+					if (i<10){
+						jbnButtons[i].setForeground(Color.blue);
+					}else{
+						jbnButtons[i].setForeground(Color.red);
+					}
+				}
+				jplButtons.setBackground(new JPanel().getBackground());
+				jplMaster.setBackground(new JPanel().getBackground());
+				jlbOutput.setBackground(Color.white);
+				jplControl.setBackground(new JPanel().getBackground());
+				getContentPane().setBackground(new Calculator().getContentPane().getBackground());
+				setBackground(Color.gray);
+			}
+		}
 
 		// Search for the button pressed until end of array or key found
 		for (int i=0; i<jbnButtons.length; i++)
