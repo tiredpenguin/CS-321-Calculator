@@ -304,6 +304,17 @@ public class Calculator extends JFrame implements ActionListener{
         				jbnButtons[i].setFont(f12);
       				}
     			}
+  		//EYE SAVER OPTION
+  		}else if(e.getSource() == jmenuitemEye){
+  				// Set colors
+  				for (int i = 0; i <= 22; i++){
+  					jbnButtons[i].setBackground(lowTemp);
+  				}
+  				jplButtons.setBackground(lowTemp);
+  				jplMaster.setBackground(lowTemp);
+  				jlbOutput.setBackground(lowTemp);
+  				jplControl.setBackground(lowTemp);
+  				getContentPane().setBackground(lowTemp);;
   		}
 		else if(e.getSource() == jmenuitemEye){
   				// Set colors
