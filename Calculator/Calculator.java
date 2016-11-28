@@ -74,9 +74,11 @@ public class Calculator extends JFrame implements ActionListener{
     jmenuFile = new JMenu("File");
     jmenuFile.setFont(f121);
     jmenuFile.setMnemonic(KeyEvent.VK_F);
+	jmenuFile.setName("File");
     
     jmenuitemExit = new JMenuItem("Exit");
     jmenuitemExit.setFont(f12);
+	jmenuitemExit.setName("Exit");
     jmenuitemExit.setAccelerator(KeyStroke.getKeyStroke( KeyEvent.VK_X, 
                                                         ActionEvent.CTRL_MASK));
     jmenuFile.add(jmenuitemExit);
@@ -84,6 +86,7 @@ public class Calculator extends JFrame implements ActionListener{
     jmenuHelp = new JMenu("Info");
     jmenuHelp.setFont(f121);
     jmenuHelp.setMnemonic(KeyEvent.VK_I);
+	jmenuHelp.setName("Info");
     
     jmenuitemAbout = new JMenuItem("About Calculator");
     jmenuitemAbout.setFont(f12);
@@ -136,6 +139,7 @@ public class Calculator extends JFrame implements ActionListener{
     getContentPane().add(jlbOutput, BorderLayout.NORTH);
     
     jbnButtons = new JButton[23];
+
 //  GridLayout(int rows, int cols, int hgap, int vgap) 
     
     
@@ -144,6 +148,7 @@ public class Calculator extends JFrame implements ActionListener{
     {
       // set each Jbutton label to the value of index
       jbnButtons[i] = new JButton(String.valueOf(i));
+	  jbnButtons[i].setName(Integer.toString(i));
     }
     
     // Create operator Jbuttons
@@ -157,18 +162,33 @@ public class Calculator extends JFrame implements ActionListener{
     jbnButtons[17] = new JButton("sqrt");
     jbnButtons[18] = new JButton("1/x");
     jbnButtons[19] = new JButton("%");
+	
+	jbnButtons[10].setName("+/-");
+	jbnButtons[11].setName(".");
+	jbnButtons[12].setName("=");
+	jbnButtons[13].setName("/");
+	jbnButtons[14].setName("*");
+	jbnButtons[15].setName("-");
+	jbnButtons[16].setName("+");
+    jbnButtons[17].setName("sqrt");
+    jbnButtons[18].setName("1/x");
+    jbnButtons[19].setName("%");
     
     jplBackSpace = new JPanel();
     jplBackSpace.setLayout(new GridLayout(1, 1, 2, 2));
     
     jbnButtons[20] = new JButton("Backspace");
+	jbnButtons[20].setName("Backspace");
     jplBackSpace.add(jbnButtons[20]);
     
     jplControl = new JPanel();
     jplControl.setLayout(new GridLayout(1, 2, 2 ,2));
     
-    jbnButtons[21] = new JButton(" CE ");
+    jbnButtons[21] = new JButton("CE");
     jbnButtons[22] = new JButton("C");
+	
+	jbnButtons[21].setName("C");
+	jbnButtons[22].setName("CE");
     
     jplControl.add(jbnButtons[21]);
     jplControl.add(jbnButtons[22]);

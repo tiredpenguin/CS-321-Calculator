@@ -1,0 +1,10 @@
+Compile all source files first.
+
+If using Dr. Java:
+- I guess you can just literally "Test" at the top and choose the Junit java file
+
+If not using Dr. Java:
+- Compile CalculatorTest.java with command "javac -cp .;junit-4.12.jar CalculatorTest.java" in cmd
+- Run tests with command "java -cp .;junit-4.XX.jar;hamcrest-core-1.3.jar org.junit.runner.JUnitCore CalculatorTest"
+
+For macs/linux: change ; to : in commands
