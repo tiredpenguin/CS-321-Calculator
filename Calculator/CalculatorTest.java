@@ -131,7 +131,7 @@ public class CalculatorTest {
 		assertEquals("78.0", output);
 	}
 	@Test
-	public void evaluateSubtraction2() {
+	public void evaluateSubtraction3() {
 		zero.doClick();
 		four.doClick();
 		minus.doClick();
