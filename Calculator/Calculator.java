@@ -94,19 +94,23 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     
     //Add Accessability Menu
     jmenuAccess = new JMenu("Accessability");
+	jmenuAccess.setName("Accessability");
     jmenuAccess.setFont(f121);
     jmenuAccess.setMnemonic(KeyEvent.VK_A);
     
     //Add Accessability Options
     jmenuitemDys = new JCheckBoxMenuItem("Dyslexia");
+	jmenuitemDys.setName("Dyslexia");
     jmenuitemDys.setFont(f12);
     jmenuAccess.add(jmenuitemDys);
     
     jmenuitemCol = new JCheckBoxMenuItem("Colorblind");
+	jmenuitemCol.setName("Colorblind");
     jmenuitemCol.setFont(f12);
     jmenuAccess.add(jmenuitemCol);
     
     jmenuitemEye = new JCheckBoxMenuItem("Eye Saver");
+	jmenuitemEye.setName("Eye Saver");
     jmenuitemEye.setFont(f12);
     jmenuAccess.add(jmenuitemEye);
     
@@ -797,6 +801,18 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     } catch (Exception e) {
       return null;
     }
+  }
+  
+  String getCurrentFont(){
+	  Font x = jbnButtons[1].getFont();
+	  String y = x.getFamily();
+	  return y;
+  }
+  
+  String getButtonColor(){
+	  Color x = jbnButtons[1].getForeground();
+	  String y = x.toString();
+	  return y;
   }
   
   
