@@ -74,11 +74,11 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     jmenuFile = new JMenu("File");
     jmenuFile.setFont(f121);
     jmenuFile.setMnemonic(KeyEvent.VK_F);
- jmenuFile.setName("File");
+    jmenuFile.setName("File");
     
     jmenuitemExit = new JMenuItem("Exit");
     jmenuitemExit.setFont(f12);
- jmenuitemExit.setName("Exit");
+    jmenuitemExit.setName("Exit");
     jmenuitemExit.setAccelerator(KeyStroke.getKeyStroke( KeyEvent.VK_X, 
                                                         ActionEvent.CTRL_MASK));
     jmenuFile.add(jmenuitemExit);
@@ -86,7 +86,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     jmenuHelp = new JMenu("Info");
     jmenuHelp.setFont(f121);
     jmenuHelp.setMnemonic(KeyEvent.VK_I);
- jmenuHelp.setName("Info");
+    jmenuHelp.setName("Info");
     
     jmenuitemAbout = new JMenuItem("About Calculator");
     jmenuitemAbout.setFont(f12);
@@ -139,7 +139,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     getContentPane().add(jlbOutput, BorderLayout.NORTH);
     
     jbnButtons = new JButton[23];
-
+    
 //  GridLayout(int rows, int cols, int hgap, int vgap) 
     
     
@@ -148,7 +148,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     {
       // set each Jbutton label to the value of index
       jbnButtons[i] = new JButton(String.valueOf(i));
-   jbnButtons[i].setName(Integer.toString(i));
+      jbnButtons[i].setName(Integer.toString(i));
     }
     
     // Create operator Jbuttons
@@ -162,14 +162,14 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     jbnButtons[17] = new JButton("sqrt");
     jbnButtons[18] = new JButton("1/x");
     jbnButtons[19] = new JButton("%");
- 
- jbnButtons[10].setName("+/-");
- jbnButtons[11].setName(".");
- jbnButtons[12].setName("=");
- jbnButtons[13].setName("/");
- jbnButtons[14].setName("*");
- jbnButtons[15].setName("-");
- jbnButtons[16].setName("+");
+    
+    jbnButtons[10].setName("+/-");
+    jbnButtons[11].setName(".");
+    jbnButtons[12].setName("=");
+    jbnButtons[13].setName("/");
+    jbnButtons[14].setName("*");
+    jbnButtons[15].setName("-");
+    jbnButtons[16].setName("+");
     jbnButtons[17].setName("sqrt");
     jbnButtons[18].setName("1/x");
     jbnButtons[19].setName("%");
@@ -178,7 +178,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     jplBackSpace.setLayout(new GridLayout(1, 1, 2, 2));
     
     jbnButtons[20] = new JButton("Backspace");
- jbnButtons[20].setName("Backspace");
+    jbnButtons[20].setName("Backspace");
     jplBackSpace.add(jbnButtons[20]);
     
     jplControl = new JPanel();
@@ -186,9 +186,9 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     
     jbnButtons[21] = new JButton("CE");
     jbnButtons[22] = new JButton("C");
- 
- jbnButtons[21].setName("C");
- jbnButtons[22].setName("CE");
+    
+    jbnButtons[21].setName("C");
+    jbnButtons[22].setName("CE");
     
     jplControl.add(jbnButtons[21]);
     jplControl.add(jbnButtons[22]);
@@ -250,7 +250,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     jplMaster.add(jplControl, BorderLayout.EAST);
     jplMaster.add(jplButtons, BorderLayout.SOUTH);
     
-   
+    
     // Add components to frame
     getContentPane().add(jplMaster, BorderLayout.SOUTH);
     requestFocus();
@@ -268,15 +268,15 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
     
     clearAll();
     for (int i=0; i<jbnButtons.length; i++){
-        jbnButtons[i].addKeyListener(this);
-      }
+      jbnButtons[i].addKeyListener(this);
+    }
     
     
     //add WindowListener for closing frame and ending program
     addWindowListener(new WindowAdapter() {
       
-       
-     
+      
+      
       public void windowClosed(WindowEvent e)
       {
         System.exit(0);
@@ -295,48 +295,58 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
   
   ////////////////////////////////////////////
   public void keyReleased(KeyEvent k){
-   char c = k.getKeyChar();
-   if (c == '0')
-    jbnButtons[0].doClick();
-   else if (c == '1')
-    jbnButtons[1].doClick();
-   else if (c == '2')
-    jbnButtons[2].doClick();
-   else if (c == '3')
-    jbnButtons[3].doClick();
-   else if (c == '4')
-    jbnButtons[4].doClick();
-   else if (c == '5')
-    jbnButtons[5].doClick();
-   else if (c == '6')
-    jbnButtons[6].doClick();
-   else if (c == '7')
-    jbnButtons[7].doClick();
-   else if (c == '8')
-    jbnButtons[8].doClick();
-   else if (c == '9')
-    jbnButtons[9].doClick();
-   
-   else if (c == '.')
-    jbnButtons[11].doClick();
-   else if (c == '=')
-    jbnButtons[12].doClick();
-   else if (c == '/')
-    jbnButtons[13].doClick();
-   else if (c == '*')
-    jbnButtons[14].doClick();
-   else if (c == '-')
-    jbnButtons[15].doClick();
-   else if (c == '+')
-    jbnButtons[16].doClick();
-   else if (c == '%')
-    jbnButtons[19].doClick();
-   else if (c == '\b')
-    jbnButtons[20].doClick();
-   else if (k.getKeyCode() == KeyEvent.VK_ENTER)
-    jbnButtons[12].doClick();
-   
-  }
+    char c = k.getKeyChar();
+    if (c == '0')
+      jbnButtons[0].doClick();
+    else if (c == '1')
+      jbnButtons[1].doClick();
+    else if (c == '2')
+      jbnButtons[2].doClick();
+    else if (c == '3')
+      jbnButtons[3].doClick();
+    else if (c == '4')
+      jbnButtons[4].doClick();
+    else if (c == '5')
+      jbnButtons[5].doClick();
+    else if (c == '6')
+      jbnButtons[6].doClick();
+    else if (c == '7')
+      jbnButtons[7].doClick();
+    else if (c == '8')
+      jbnButtons[8].doClick();
+    else if (c == '9')
+      jbnButtons[9].doClick();
+    
+    else if (c == '.')
+      jbnButtons[11].doClick();
+    else if (c == '=')
+      jbnButtons[12].doClick();
+    else if (c == '/')
+      jbnButtons[13].doClick();
+    else if (c == '*')
+      jbnButtons[14].doClick();
+    else if (c == '-')
+      jbnButtons[15].doClick();
+    else if (c == '+')
+      jbnButtons[16].doClick();
+    else if (c == '%')
+      jbnButtons[19].doClick();
+    else if (c == '\b')
+      jbnButtons[20].doClick();
+    else if (k.getKeyCode() == KeyEvent.VK_ENTER)
+      jbnButtons[12].doClick();
+    else if (c == 'c')
+      jbnButtons[22].doClick();
+    else if (c == 'x')
+      jbnButtons[21].doClick();
+    else if (c == 'q')
+      jmenuitemDys.doClick();
+    else if (c == 'w')
+      jmenuitemCol.doClick();
+    else if (c == 'e')
+      jmenuitemEye.doClick();
+                 
+                 }
 ///////////////////////////////////////////// 
 
   // Perform action
@@ -788,22 +798,22 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
       return null;
     }
   }
-
-
-
-@Override
-public void keyTyped(KeyEvent e) {
- // TODO Auto-generated method stub
- 
-}
-
-@Override
-public void keyPressed(KeyEvent e) {
- // TODO Auto-generated method stub
- 
-}
   
-}  //End of Swing Calculator Class.
+  
+  
+  @Override
+  public void keyTyped(KeyEvent e) {
+    // TODO Auto-generated method stub
+    
+  }
+  
+  @Override
+  public void keyPressed(KeyEvent e) {
+    // TODO Auto-generated method stub
+    
+  }
+  
+  }  //End of Swing Calculator Class.
 
 class DivideByZeroException extends Exception{
   public DivideByZeroException()
@@ -933,5 +943,5 @@ class CustomABOUTDialog extends JDialog implements ActionListener {
       this.dispose();
     }
   }
-	
+  
 }
