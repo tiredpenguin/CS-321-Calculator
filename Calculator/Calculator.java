@@ -810,7 +810,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
   }
   
   String getButtonColor(){
-   Color x = jbnButtons[1].getForeground();
+   Color x = jbnButtons[1].getBackground();
    String y = x.toString();
    return y;
   }
