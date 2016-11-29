@@ -416,6 +416,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
           jbnButtons[i].setFont(f12);
         }
       }
+      pack();
     }
     //EYE SAVER
     if(e.getSource() == jmenuitemEye){
@@ -795,7 +796,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
       //Need to use float otherwise
       //it would be interpreted as style
       
-      return font.deriveFont(12f);
+      return font.deriveFont(24f);
       
     } catch (Exception e) {
       return null;
