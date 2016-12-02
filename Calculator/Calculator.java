@@ -298,7 +298,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
   
   
   ////////////////////////////////////////////
-  public void keyReleased(KeyEvent k){
+  public void keyPressed(KeyEvent k){
     char c = k.getKeyChar();
     if (c == '0')
       jbnButtons[0].doClick();
@@ -824,7 +824,7 @@ public class Calculator extends JFrame implements ActionListener, KeyListener{
   }
   
   @Override
-  public void keyPressed(KeyEvent e) {
+  public void keyReleased(KeyEvent e) {
     // TODO Auto-generated method stub
     
   }
