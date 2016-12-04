@@ -27,8 +27,12 @@ import java.awt.event.WindowEvent;
 import java.io.*;
 
 public class CalculatorTest {
+	
+	//Test instantiates a Calculator and uses the same object for every test
 	Calculator calculator = new Calculator();
 	String output;
+	
+	//Arithmetic Buttons
 	JButton one = (JButton)TestUtils.getChildNamed(calculator, "1");
 	JButton two = (JButton)TestUtils.getChildNamed(calculator, "2");
 	JButton three = (JButton)TestUtils.getChildNamed(calculator, "3");
@@ -52,9 +56,26 @@ public class CalculatorTest {
 	JButton clear = (JButton)TestUtils.getChildNamed(calculator, "C");
 	JButton clearentry = (JButton)TestUtils.getChildNamed(calculator, "CE");
 	
+	//Menu Buttons
+	JMenu accessmenu = (JMenu)TestUtils.getChildNamed(calculator, "Accessibility");
+	JCheckBoxMenuItem dyslexia = (JCheckBoxMenuItem)TestUtils.getChildNamed(calculator, "Dyslexia");
+	JCheckBoxMenuItem colorblind = (JCheckBoxMenuItem)TestUtils.getChildNamed(calculator, "Colorblind");
+	JCheckBoxMenuItem eyesaver = (JCheckBoxMenuItem)TestUtils.getChildNamed(calculator, "Eye Saver");
+	
+	//clear calculator inputs and resets any turned on disability options before
+	//next test
 	@Before public void executedBeforeEach() {
 		clear.doClick();
 		output = "";
+		if (calculator.col == true){
+			colorblind.doClick();
+		}
+		if (calculator.dys == true){
+			dyslexia.doClick();
+		}
+		if (calculator.eye == true){
+			eyesaver.doClick();
+		}
 	}
 	
 	@Test
@@ -140,4 +161,131 @@ public class CalculatorTest {
 		output = calculator.getDisplayString();
 		assertEquals("-3.0", output);
 	}
+	@Test
+	public void evaluateMultiply1() {
+		zero.doClick();
+		four.doClick();
+		multiply.doClick();
+		seven.doClick();
+		equals.doClick();
+		output = calculator.getDisplayString();
+		assertEquals("28.0", output);
+	}
+	@Test
+	public void evaluateMultiply2() {
+		zero.doClick();
+		multiply.doClick();
+		zero.doClick();
+		equals.doClick();
+		output = calculator.getDisplayString();
+		assertEquals("0.0", output);
+	}
+	@Test
+	public void evaluateMultiply3() {
+		seven.doClick();
+		sign.doClick();
+		multiply.doClick();
+		seven.doClick();
+		equals.doClick();
+		output = calculator.getDisplayString();
+		assertEquals("-49.0", output);
+	}
+	@Test
+	public void evaluateDivision1() {
+		one.doClick();
+		five.doClick();
+		divide.doClick();
+		five.doClick();
+		equals.doClick();
+		output = calculator.getDisplayString();
+		assertEquals("3.0", output);
+	}
+	@Test
+	public void evaluateDivision2() {
+		two.doClick();
+		divide.doClick();
+		three.doClick();
+		equals.doClick();
+		output = calculator.getDisplayString();
+		assertEquals("0.6666666666666666", output);
+	}
+	@Test
+	public void ArithmeticError1() {
+		zero.doClick();
+		divide.doClick();
+		zero.doClick();
+		equals.doClick();
+		output = calculator.getDisplayString();
+		assertEquals("Cannot divide by zero!", output);
+	}
+	@Test
+	public void ArithmeticError2() {
+		zero.doClick();
+		reciprocal.doClick();
+		output = calculator.getDisplayString();
+		assertEquals("Cannot divide by zero!", output);
+	}
+	@Test
+	public void DyslexicOption() {
+		output = calculator.getCurrentFont();
+		assertEquals("Times New Roman", output);
+		dyslexia.doClick();
+		output = calculator.getCurrentFont();
+		assertEquals("OpenDyslexicAlta", output);
+	}
+	
+	@Test
+	public void ColorblindOption() {
+		colorblind.doClick();
+		output = calculator.getButtonColor();
+		assertEquals("java.awt.Color[r=0,g=0,b=0]", output);
+	}
+	
+	@Test
+	public void EyesaverOption() {
+		eyesaver.doClick();
+		output = calculator.getButtonColor();
+		assertEquals("java.awt.Color[r=226,g=153,b=0]", output);
+	}
+	
+	@Test
+	public void DyslexicAndColorblindOption() {
+		dyslexia.doClick();
+		colorblind.doClick();
+		output = calculator.getButtonColor();
+		String output2 = calculator.getCurrentFont();
+		assertEquals("java.awt.Color[r=0,g=0,b=0]", output);
+		assertEquals("OpenDyslexicAlta", output2);
+	}
+	
+	@Test
+	public void DyslexicAndEyesaverOption() {
+		dyslexia.doClick();
+		eyesaver.doClick();
+		output = calculator.getButtonColor();
+		String output2 = calculator.getCurrentFont();
+		assertEquals("java.awt.Color[r=226,g=153,b=0]", output);
+		assertEquals("OpenDyslexicAlta", output2);
+	}
+	
+	@Test
+	public void EyesaverOverwriteOption() {
+		colorblind.doClick();
+		output = calculator.getButtonColor();
+		assertEquals("java.awt.Color[r=0,g=0,b=0]", output);
+		eyesaver.doClick();
+		output = calculator.getButtonColor();
+		assertEquals("java.awt.Color[r=226,g=153,b=0]", output);
+	}
+	
+	@Test
+	public void ColorblindOverwriteOption() {
+		eyesaver.doClick();
+		output = calculator.getButtonColor();
+		assertEquals("java.awt.Color[r=226,g=153,b=0]", output);
+		colorblind.doClick();
+		output = calculator.getButtonColor();
+		assertEquals("java.awt.Color[r=0,g=0,b=0]", output);
+	}
+	
 }
