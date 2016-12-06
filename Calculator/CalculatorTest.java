@@ -78,6 +78,7 @@ public class CalculatorTest{
     }
   }
   
+  //Addition Tests
   @Test
   public void evaluateAddition1() {
     one.doClick();
@@ -87,7 +88,6 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("3.0", output);
   }
-  
   @Test
   public void evaluateAddition2() {
     nine.doClick();
@@ -99,7 +99,6 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("174.0", output);
   }
-  
   @Test
   public void evaluateAddition3() {
     nine.doClick();
@@ -131,6 +130,8 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("5.0", output);
   }
+  
+  //Subtraction Tests
   @Test
   public void evaluateSubtraction1() {
     seven.doClick();
@@ -161,6 +162,8 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("-3.0", output);
   }
+  
+  //Multiplication Tests
   @Test
   public void evaluateMultiply1() {
     zero.doClick();
@@ -190,6 +193,8 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("-49.0", output);
   }
+  
+  //Division Tests
   @Test
   public void evaluateDivision1() {
     one.doClick();
@@ -209,6 +214,7 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("0.6666666666666666", output);
   }
+  //Division Errors
   @Test
   public void ArithmeticError1() {
     zero.doClick();
@@ -225,6 +231,80 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("Cannot divide by zero!", output);
   }
+  
+  //Square Root Tests
+  @Test
+  public void EvaluateSquareRoot(){
+    eight.doClick();
+    one.doClick();
+    sqrt.doClick();
+    output = calculator.getDisplayString();
+    assertEquals("9.0", output);
+  }
+  @Test
+  public void NegativeSquareRootError(){
+    one.doClick();
+    sign.doClick();
+    sqrt.doClick();
+    output = calculator.getDisplayString();
+    assertEquals("Invalid input for function!", output);
+  }
+    
+  //Sign Test
+  @Test
+  public void EvaluateSignedNumber(){
+    three.doClick();
+    plus.doClick();
+    three.doClick();
+    sign.doClick();
+    equals.doClick();
+    output = calculator.getDisplayString();
+    assertEquals("0.0", output);
+  }
+  
+  //Reciprocal Test
+  @Test
+  public void EvaluateReciprocal(){
+    one.doClick();
+    zero.doClick();
+    reciprocal.doClick();
+    output = calculator.getDisplayString();
+    assertEquals("0.1", output);
+  }
+  
+  //Decimal Point Test
+  @Test
+  public void EvaluateDecimalPoint(){
+    zero.doClick();
+    decimal.doClick();
+    five.doClick();
+    one.doClick();
+    plus.doClick();
+    zero.doClick();
+    decimal.doClick();
+    seven.doClick();
+    five.doClick();
+    equals.doClick();
+    output = calculator.getDisplayString();
+    assertEquals("1.26", output);
+  }
+  
+  //Percent Test
+  @Test
+  public void EvaluatePercent(){
+    one.doClick();
+    five.doClick();
+    seven.doClick();
+    decimal.doClick();
+    eight.doClick();
+    nine.doClick();
+    percent.doClick();
+    output = calculator.getDisplayString();
+    assertEquals("1.5789", output);
+  }
+    
+    
+  //Accesibility Options
   @Test
   public void DyslexicOption() {
     output = calculator.getCurrentFont();
@@ -234,7 +314,6 @@ public class CalculatorTest{
     assertEquals(true, dyslexia.getState());
     assertEquals("OpenDyslexicAlta", output);
   }
-  
   @Test
   public void ColorblindOption() {
     colorblind.doClick();
@@ -242,7 +321,6 @@ public class CalculatorTest{
     assertEquals(true, colorblind.getState());
     assertEquals("java.awt.Color[r=0,g=0,b=0]", output);
   }
-  
   @Test
   public void EyesaverOption() {
     eyesaver.doClick();
@@ -250,7 +328,6 @@ public class CalculatorTest{
     assertEquals(true, eyesaver.getState());
     assertEquals("java.awt.Color[r=226,g=153,b=0]", output);
   }
-  
   @Test
   public void DyslexicAndColorblindOption() {
     dyslexia.doClick();
@@ -262,7 +339,6 @@ public class CalculatorTest{
     assertEquals("java.awt.Color[r=0,g=0,b=0]", output);
     assertEquals("OpenDyslexicAlta", output2);
   }
-  
   @Test
   public void DyslexicAndEyesaverOption() {
     dyslexia.doClick();
@@ -274,7 +350,6 @@ public class CalculatorTest{
     assertEquals("java.awt.Color[r=226,g=153,b=0]", output);
     assertEquals("OpenDyslexicAlta", output2);
   }
-  
   @Test
   public void EyesaverOverwriteOption() {
     colorblind.doClick();
@@ -286,7 +361,6 @@ public class CalculatorTest{
     assertEquals(false, colorblind.getState());
     assertEquals("java.awt.Color[r=226,g=153,b=0]", output);
   }
-  
   @Test
   public void ColorblindOverwriteOption() {
     eyesaver.doClick();
@@ -309,7 +383,6 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("3.0", output);
   }
-  
   @Test
   public void KeyboardSubtraction(){
     calculator.keyPressed(new KeyEvent(calculator,KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_7, '7'));
@@ -320,7 +393,6 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("-18.0", output);
   }
-  
   @Test
   public void KeyboardMultiplication(){
     calculator.keyPressed(new KeyEvent(calculator,KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_4, '4'));
@@ -330,7 +402,6 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("28.0", output);
   }
-  
   @Test
   public void KeyboardDivision(){
     calculator.keyPressed(new KeyEvent(calculator,KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_1, '1'));
@@ -341,7 +412,6 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("3.0", output);
   }
-  
   @Test
   public void KeyboardPercent(){
     calculator.keyPressed(new KeyEvent(calculator,KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_2, '2'));
@@ -351,7 +421,6 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("2.98", output);
   }
-  
   @Test
   public void KeyboardBackspace(){
     calculator.keyPressed(new KeyEvent(calculator,KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_1, '1'));
@@ -366,7 +435,6 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("110.0", output);
   }
-  
   @Test
   public void KeyboardClear(){
     calculator.keyPressed(new KeyEvent(calculator,KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_1, '1'));
@@ -377,7 +445,6 @@ public class CalculatorTest{
     output = calculator.getDisplayString();
     assertEquals("2.0", output);
   }
-  
   @Test
   public void KeyboardClearEntry(){
     calculator.keyPressed(new KeyEvent(calculator,KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_1, '1'));
@@ -390,6 +457,7 @@ public class CalculatorTest{
     assertEquals("3.0", output);
   }
   
+  //Keyboard Accessibility
   @Test
   public void KeyboardDyslexic(){
     calculator.keyPressed(new KeyEvent(calculator,KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_Q, 'q'));
@@ -397,7 +465,6 @@ public class CalculatorTest{
     assertEquals(true, dyslexia.getState());
     assertEquals("OpenDyslexicAlta", output);
   }
-  
   @Test
   public void KeyboardColorblind(){
     calculator.keyPressed(new KeyEvent(calculator,KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_W, 'w'));
@@ -405,7 +472,6 @@ public class CalculatorTest{
     assertEquals(true, colorblind.getState());
     assertEquals("java.awt.Color[r=0,g=0,b=0]", output);
   }
-  
   @Test
   public void KeyboardEyesaver(){
     calculator.keyPressed(new KeyEvent(calculator,KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0, KeyEvent.VK_E, 'e'));
